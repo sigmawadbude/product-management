@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 /**
  * Root component of the application.
@@ -20,4 +21,24 @@ export class AppComponent {
    * Displayed in the navigation bar or page header.
    */
   title = 'Product Management';
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  get userName(): string {
+    if (this.authService.currentUser) {
+      return this.authService.currentUser.userName;
+    }
+    return '';
+  }
+
+  logOut(): void {
+    this.authService.logout();
+    console.log('Log out');
+    this.router.navigate(['/login']);
+  }
 }

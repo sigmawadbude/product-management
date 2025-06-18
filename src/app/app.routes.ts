@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { productResolver } from './services/product.resolver';
+import { LoginComponent } from './user/login.component';
 
 export const routes: Routes = [
   { path: 'products', component: ProductListComponent },
@@ -12,6 +13,7 @@ export const routes: Routes = [
     component: ProductDetailComponent,
     resolve: { resolvedData: productResolver },
   },
+  { path: 'login', component: LoginComponent },
   { path: 'welcome', component: HomeComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
