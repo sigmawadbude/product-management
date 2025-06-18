@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 /**
  * Root component of the application.
@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
  */
 @Component({
   selector: 'app-root', // CSS selector for using this component in HTML
-  imports: [RouterOutlet], // Enables Angular routing outlet for nested components
+  imports: [RouterOutlet, RouterLink, RouterLinkActive], // Enables Angular routing outlet for nested components
   templateUrl: './app.component.html', // External HTML template
   styleUrl: './app.component.css', // External CSS styles
 })
