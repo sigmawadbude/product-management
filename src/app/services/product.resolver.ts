@@ -14,7 +14,7 @@ export const productResolver: ResolveFn<ProductResolved> = (
   const productService = inject(ProductService);
   const id = route.paramMap.get('id');
 
-  if(!id || !isValidObjectId(id)){
+  if (!id || (id !== '0' && !isValidObjectId(id))) {
     const message = `Invalid MongoDB ObjectId: ${id}`;
     return of({ product: null, message });
   }

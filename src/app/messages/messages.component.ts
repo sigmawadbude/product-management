@@ -11,16 +11,20 @@ import { MessageService } from '../services/message.service';
       </button>
     </div>
     <div class="card-body">
-      <div *ngFor="let message of messages; let i = index">
-        <div *ngIf="i < 10" class="message-row">
+      @for( message of messages; let i = $index; track i){
+      <div>
+        @if(i < 10){
+        <div class="message-row">
           {{ message }}
         </div>
+        }
       </div>
+      }
     </div>
   </div>`,
   styles: ['.message-row { margin-bottom: 10px }'],
 })
-export class MessageComponent {
+export class MessagesComponent {
   get messages(): string[] {
     return this.messageService.messages;
   }
@@ -29,5 +33,7 @@ export class MessageComponent {
 
   close(): void {
     // Close the popup.
+    this.router.navigate([{outlets: {popup: null}}]);
+    this.messageService.isDisplayed = false;
   }
 }

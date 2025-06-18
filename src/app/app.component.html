@@ -1,3 +1,6 @@
+@if(loading){
+<span class="fa fa-spinner spinner"></span>
+}
 <nav class="navbar navbar-expand navbar-light bg-light">
   <a class="navbar-brand">{{ title }}</a>
   <ul class="navbar-nav">
@@ -7,8 +10,21 @@
       >
     </li>
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/products']" routerLinkActive="active"
+      <a
+        class="nav-link"
+        [routerLink]="['/products']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
         >Product List</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/products/0/edit']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Add Product</a
       >
     </li>
   </ul>
@@ -17,13 +33,19 @@
     <li class="nav-item">
       <a class="nav-link">Welcome {{ userName }}</a>
     </li>
-    }
+    } @if(!isMessageDisplayed){
     <li class="nav-item">
-      <a class="nav-link">Show Messages</a>
+      <a class="nav-link" (click)="displayMessages()">Show Messages</a>
     </li>
-    @if(!isLoggedIn){
+    } @if(isMessageDisplayed){
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active" >Log In</a>
+      <a class="nav-link" (click)="hideMessages()">Hide Messages</a>
+    </li>
+    }@if(!isLoggedIn){
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active"
+        >Log In</a
+      >
     </li>
     } @if(isLoggedIn){
     <li class="nav-item">
@@ -33,5 +55,13 @@
   </ul>
 </nav>
 <div class="container">
-  <router-outlet />
+  <div class="row">
+    <div class="col-md-10">
+      <router-outlet />
+    </div>
+    <div class="col-md-2">
+      @if(isMessageDisplayed){
+      <router-outlet name="popup" />}
+    </div>
+  </div>
 </div>
