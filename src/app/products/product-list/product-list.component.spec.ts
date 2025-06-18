@@ -7,6 +7,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { of, throwError } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -44,7 +45,7 @@ describe('ProductListComponent', () => {
     const spy = jasmine.createSpyObj('ProductService', ['getProducts']);
 
     TestBed.configureTestingModule({
-      imports: [FormsModule, ProductListComponent],
+      imports: [FormsModule, ProductListComponent, RouterTestingModule],
       declarations: [],
       providers: [{ provide: ProductService, useValue: spy }, CurrencyPipe],
     });

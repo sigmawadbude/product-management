@@ -4,10 +4,11 @@ import { ProductService } from '../../services/product.service';
 import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StarComponent } from '../../shared/star.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-list', // Component selector used in templates
-  imports: [FormsModule, CurrencyPipe, StarComponent], // Required modules/components
+  imports: [FormsModule, CurrencyPipe, StarComponent, RouterLink], // Required modules/components
   templateUrl: './product-list.component.html', // Component's HTML view
   styleUrl: './product-list.component.css', // Component's styles
 })
